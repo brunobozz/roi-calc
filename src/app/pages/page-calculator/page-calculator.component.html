@@ -1,0 +1,24 @@
+<span class="fs-2 fw-bold">Calculator</span>
+<form [formGroup]="calculatorForm" (ngSubmit)="submitCalculatorForm()">
+  <div class="mb-3">
+    <label for="value1" class="form-label fw-bold">Value 1</label>
+    <input
+      type="text"
+      class="form-control"
+      [ngClass]="{ 'is-invalid': fieldValidation('value1') }"
+      formControlName="value1"
+    />
+    <div class="invalid-feedback small">Campo Inválido</div>
+  </div>
+  <div class="mb-3">
+    <label for="value2" class="form-label fw-bold">Value 2</label>
+    <input
+      type="text"
+      class="form-control"
+      [ngClass]="{ 'is-invalid': fieldValidation('value2') }"
+      formControlName="value2"
+    />
+    <div class="invalid-feedback small">Campo Inválido</div>
+  </div>
+  <button class="btn btn-primary text-light" type="submit">Calculate</button>
+</form>
