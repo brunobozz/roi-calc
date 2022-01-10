@@ -14,6 +14,8 @@ import { ServInterceptorService } from './services/serv-interceptor/serv-interce
 import { CompHeaderComponent } from './components/comp-header/comp-header.component';
 import { CompLoadingSpinnerComponent } from './components/comp-loading-spinner/comp-loading-spinner.component';
 import { PageCoinPricesComponent } from './pages/page-coin-prices/page-coin-prices.component';
+import { CompMenuComponent } from './components/comp-menu/comp-menu.component';
+import { CompLogoComponent } from './components/comp-logo/comp-logo.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +26,9 @@ import { PageCoinPricesComponent } from './pages/page-coin-prices/page-coin-pric
     //COMPONENTS
     CompHeaderComponent,
     CompLoadingSpinnerComponent,
-    PageCoinPricesComponent
+    PageCoinPricesComponent,
+    CompMenuComponent,
+    CompLogoComponent,
   ],
   imports: [
     BrowserModule,

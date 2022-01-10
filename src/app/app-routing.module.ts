@@ -6,7 +6,7 @@ import { PageHomeComponent } from './pages/page-home/page-home.component';
 
 const routes: Routes = [
   { path: 'home', component: PageHomeComponent },
-  { path: 'coin-price', component: PageCoinPricesComponent },
+  { path: 'coin-prices', component: PageCoinPricesComponent },
   { path: 'roi-calculator', component: PageRoiCalculatorComponent },
   { path: '', redirectTo: 'coin-price', pathMatch: 'full' },
 ];

@@ -1,0 +1,26 @@
+<div class="menubtn" (click)="toggleMenu()">
+  <div class="menubtn-icon" [ngClass]="{ opened: menuOpened === true }">
+    <span class="bg-light"></span>
+    <span class="bg-light"></span>
+    <span class="bg-light"></span>
+  </div>
+</div>
+<div
+  class="overlay"
+  [ngClass]="{ opened: menuOpened === true }"
+  (click)="toggleMenu()"
+></div>
+<div class="menu" [ngClass]="{ opened: menuOpened === true }">
+  <div class="menu-divider"></div>
+  <div class="d-grid gap-2">
+    <button
+      *ngFor="let menu of menuList"
+      class="btn text-light text-start"
+      [ngClass]="menuSelected === menu.route ? 'btn-primary' : 'btn-dark'"
+      (click)="goRote(menu.route)"
+    >
+      <i class="fa" [ngClass]="menu.icon"></i>
+      <span class="ms-2">{{ menu.name }}</span>
+    </button>
+  </div>
+</div>
