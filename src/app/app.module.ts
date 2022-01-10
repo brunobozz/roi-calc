@@ -2,13 +2,18 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import { AppRoutingModule, ArrayOfComponents } from './app-routing.module';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ToastrModule } from 'ngx-toastr';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+//SERVICES
+import { ServInterceptorService } from './services/serv-interceptor/serv-interceptor.service';
+
 //COMPONENTS
 import { CompHeaderComponent } from './components/comp-header/comp-header.component';
+import { CompLoadingSpinnerComponent } from './components/comp-loading-spinner/comp-loading-spinner.component';
+import { PageCoinPricesComponent } from './pages/page-coin-prices/page-coin-prices.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +23,8 @@ import { CompHeaderComponent } from './components/comp-header/comp-header.compon
 
     //COMPONENTS
     CompHeaderComponent,
+    CompLoadingSpinnerComponent,
+    PageCoinPricesComponent
   ],
   imports: [
     BrowserModule,
@@ -33,7 +40,13 @@ import { CompHeaderComponent } from './components/comp-header/comp-header.compon
       autoDismiss: true,
     }),
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: ServInterceptorService,
+      multi: true,
+    },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

@@ -1,11 +1,13 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { PageCalculatorComponent } from './pages/page-calculator/page-calculator.component';
+import { PageRoiCalculatorComponent } from './pages/page-roi-calculator/page-roi-calculator.component';
+import { PageCoinPricesComponent } from './pages/page-coin-prices/page-coin-prices.component';
 import { PageHomeComponent } from './pages/page-home/page-home.component';
 
 const routes: Routes = [
   { path: 'home', component: PageHomeComponent },
-  { path: 'coin-price', component: PageCalculatorComponent },
+  { path: 'coin-price', component: PageCoinPricesComponent },
+  { path: 'roi-calculator', component: PageRoiCalculatorComponent },
   { path: '', redirectTo: 'coin-price', pathMatch: 'full' },
 ];
 
@@ -15,4 +17,8 @@ const routes: Routes = [
 })
 export class AppRoutingModule {}
 
-export const ArrayOfComponents = [PageHomeComponent, PageCalculatorComponent];
+export const ArrayOfComponents = [
+  PageHomeComponent,
+  PageRoiCalculatorComponent,
+  PageCoinPricesComponent,
+];

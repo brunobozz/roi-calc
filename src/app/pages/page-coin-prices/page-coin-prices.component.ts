@@ -4,11 +4,10 @@ import { ToastrService } from 'ngx-toastr';
 import { ServCoingeckoApiService } from 'src/app/services/serv-coingecko-api/serv-coingecko-api.service';
 
 @Component({
-  selector: 'app-page-calculator',
-  templateUrl: './page-calculator.component.html',
-  styleUrls: ['./page-calculator.component.scss'],
+  selector: 'app-page-coin-prices',
+  templateUrl: './page-coin-prices.component.html',
 })
-export class PageCalculatorComponent implements OnInit {
+export class PageCoinPricesComponent implements OnInit {
   public currencyList: any = [];
   public coinsList: any = [];
   public coinMarket: any = [];
