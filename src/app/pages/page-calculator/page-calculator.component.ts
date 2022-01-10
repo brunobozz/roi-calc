@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
+import { ServCoingeckoApiService } from 'src/app/services/serv-coingecko-api/serv-coingecko-api.service';
 
 @Component({
   selector: 'app-page-calculator',
@@ -8,14 +9,43 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./page-calculator.component.scss'],
 })
 export class PageCalculatorComponent implements OnInit {
+  public currencyList: any = [];
+  public coinsList: any = [];
+  public coinMarket: any = [];
+
   public calculatorForm = new FormGroup({
-    value1: new FormControl('', [Validators.required]),
-    value2: new FormControl('', [Validators.required]),
+    currency: new FormControl('', [Validators.required]),
   });
 
-  constructor(private toastr: ToastrService) {}
+  constructor(
+    private toastr: ToastrService,
+    private servCoingeckApi: ServCoingeckoApiService
+  ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.getCurrencyList();
+    this.getCoinsMarket('brl');
+  }
+
+  private getCurrencyList() {
+    this.servCoingeckApi
+      .getData('simple/supported_vs_currencies')
+      .subscribe((res: any) => {
+        this.currencyList = res;
+      });
+  }
+
+  private getCoinsMarket(val: string) {
+    this.servCoingeckApi
+      .getData(
+        'coins/markets?vs_currency=' +
+          val +
+          '&order=market_cap_desc&per_page=100&page=1&sparkline=false'
+      )
+      .subscribe((res: any) => {
+        this.coinMarket = res;
+      });
+  }
 
   public fieldValidation(field: any) {
     return (
@@ -26,7 +56,7 @@ export class PageCalculatorComponent implements OnInit {
 
   public submitCalculatorForm() {
     if (this.calculatorForm.valid) {
-      this.toastr.error('Form válido', 'Feito!');
+      this.getCoinsMarket(this.calculatorForm.value.currency);
     } else {
       this.toastr.error('Form Inválido', 'Não deu!');
     }

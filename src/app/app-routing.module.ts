@@ -5,8 +5,8 @@ import { PageHomeComponent } from './pages/page-home/page-home.component';
 
 const routes: Routes = [
   { path: 'home', component: PageHomeComponent },
-  { path: 'calculator', component: PageCalculatorComponent },
-  { path: '', redirectTo: 'home', pathMatch: 'full' },
+  { path: 'coin-price', component: PageCalculatorComponent },
+  { path: '', redirectTo: 'coin-price', pathMatch: 'full' },
 ];
 
 @NgModule({

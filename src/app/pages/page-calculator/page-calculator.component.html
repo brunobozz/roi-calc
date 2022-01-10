@@ -1,24 +1,38 @@
-<span class="fs-2 fw-bold">Calculator</span>
+<span class="fs-2 fw-bold">Coin Price</span>
 <form [formGroup]="calculatorForm" (ngSubmit)="submitCalculatorForm()">
   <div class="mb-3">
-    <label for="value1" class="form-label fw-bold">Value 1</label>
-    <input
-      type="text"
-      class="form-control"
-      [ngClass]="{ 'is-invalid': fieldValidation('value1') }"
-      formControlName="value1"
-    />
-    <div class="invalid-feedback small">Campo Inválido</div>
+    <label for="coins-list" class="form-label fw-bold" for="currency"
+      >Moeda</label
+    >
+    <select
+      class="form-select text-uppercase"
+      [ngClass]="{ 'is-invalid': fieldValidation('currency') }"
+      formControlName="currency"
+      (change)="submitCalculatorForm()"
+    >
+      <option selected>Selecione uma moeda</option>
+      <option class="text-uppercase" *ngFor="let currency of currencyList">
+        {{ currency }}
+      </option>
+    </select>
+    <div class="invalid-feedback small">Campo obrigatório</div>
   </div>
-  <div class="mb-3">
-    <label for="value2" class="form-label fw-bold">Value 2</label>
-    <input
-      type="text"
-      class="form-control"
-      [ngClass]="{ 'is-invalid': fieldValidation('value2') }"
-      formControlName="value2"
-    />
-    <div class="invalid-feedback small">Campo Inválido</div>
-  </div>
-  <button class="btn btn-primary text-light" type="submit">Calculate</button>
 </form>
+
+<section class="mt-4">
+  <div class="list-group">
+    <div
+      *ngFor="let coin of coinMarket"
+      class="list-group-item d-flex justify-content-between align-items-center"
+    >
+      <div class="d-flex justify-content-between align-items-center">
+        <img [src]="coin.image" style="max-height: 24px; margin-right: 10px" />
+        <span>{{ coin.name }}</span>
+      </div>
+      <span>{{
+        coin.current_price
+          | currency: calculatorForm.value.currency.toUpperCase()
+      }}</span>
+    </div>
+  </div>
+</section>
