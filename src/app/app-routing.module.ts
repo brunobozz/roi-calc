@@ -8,7 +8,7 @@ const routes: Routes = [
   { path: 'home', component: PageHomeComponent },
   { path: 'coin-prices', component: PageCoinPricesComponent },
   { path: 'roi-calculator', component: PageRoiCalculatorComponent },
-  { path: '', redirectTo: 'coin-price', pathMatch: 'full' },
+  { path: '', redirectTo: 'coin-prices', pathMatch: 'full' },
 ];
 
 @NgModule({
