@@ -10,8 +10,11 @@
       formControlName="currency"
       (change)="submitCalculatorForm()"
     >
-      <option selected>Selecione uma moeda</option>
-      <option class="text-uppercase" *ngFor="let currency of currencyList">
+      <option
+        class="text-uppercase"
+        *ngFor="let currency of currencyList"
+        [selected]="currency === 'brl'"
+      >
         {{ currency }}
       </option>
     </select>

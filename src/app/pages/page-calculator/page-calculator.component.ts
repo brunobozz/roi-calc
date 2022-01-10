@@ -14,7 +14,7 @@ export class PageCalculatorComponent implements OnInit {
   public coinMarket: any = [];
 
   public calculatorForm = new FormGroup({
-    currency: new FormControl('', [Validators.required]),
+    currency: new FormControl('BRL', [Validators.required]),
   });
 
   constructor(
@@ -24,7 +24,7 @@ export class PageCalculatorComponent implements OnInit {
 
   ngOnInit(): void {
     this.getCurrencyList();
-    this.getCoinsMarket('brl');
+    this.submitCalculatorForm();
   }
 
   private getCurrencyList() {
